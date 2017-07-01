@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Passion+One');
+
+html {
+  background: url(http://ecowallpapers.net/wp-content/uploads/1928_michael_bay.jpg) no-repeat center center fixed; 
+  background-size: cover;
+}
+body {
+  background: transparent;
+  padding-top: 3rem;
+}
+h1 {
+  float: right;
+  margin-top: 0.75rem;
+  font-family: 'Gothic', cursive;
+  text-shadow: 0 0 10px #fff,
+               0 0 20px #fff,
+               0 0 30px #fff,
+               0 0 40px #8B008B,
+               0 0 70px #8B008B,
+               0 0 80px #8B008B,
+               0 0 100px #4B0082,
+               0 0 150px #4B0082;
+}
+
+.list-container {
+  background-color: aquamarine;
+}
+
+#flick-list {
+  margin-bottom: 0;
+}
+.template {
+  display: none;
+}
+
+.flick.fav {
+  background-color: #62d9dd;
+}
+.flick + .flick {
+  border-top: 1px solid #ddd;
+}
+.flick-name {
+  padding: 0 0.5rem;
+}
+.flick .actions.button-group {
+  margin-bottom: 0;
+}*/
