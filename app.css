@@ -23,7 +23,7 @@ h1 {
 }
 
 .list-container {
-  background-color: aquamarine;
+  background-color: whitesmoke;
 }
 
 #flick-list {
@@ -37,11 +37,11 @@ h1 {
   background-color: #62d9dd;
 }
 .flick + .flick {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid whitesmoke;
 }
 .flick-name {
   padding: 0 0.5rem;
 }
 .flick .actions.button-group {
   margin-bottom: 0;
-}*/
+}

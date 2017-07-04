@@ -13,13 +13,82 @@ const app = {
         this.handleSubmit.bind(this)
       )
   },
+
+    favFlick(flick,ev) {
+        const listItem = ev.target.closest('.flick')
+        flick.fav = !flick.fav
+        
+        if (flick.fav) {
+        listItem.classList.add('fav')
+        } else {
+        listItem.classList.remove('fav')
+        }
+        
+        
+    },
+
+    removeFlick(flick, ev) {
+        // remove from the DOM
+        const listItem = ev.target.closest('.flick')
+        listItem.remove()
+        
+        // remove from the array
+        const i = this.flicks.indexOf(flick)
+        this.flicks.splice(i,1)
+
+
+    },
+
+    moveFlickDown(flick, ev) {
+        const listItem = ev.target.closest('.flick')
+        const nextItem = listItem.nextElementSibling
+
+        if(nextItem.nextElementSibling){
+            listItem.parentElement.insertBefore(listItem, nextItem.nextElementSibling)
+        }
+    },
+
+    moveFlickUp(flick, ev) {
+        const listItem = ev.target.closest('.flick')
+        const previousItem = listItem.previousElementSibling
+
+        if(previousItem){
+            listItem.parentElement.insertBefore(listItem, previousItem)
+        }
+    },
     
     renderListItem(flick) {
     // create a new list item from the template
     const item = this.template.cloneNode(true)
-    item.classList.remove('template')
     item.dataset.id = flick.id
-    item.querySelector('.flick-name').textContent = flick.name
+    item.classList.remove('template')
+
+    item.querySelector('.flick-name').textContent = flick.name   
+    item
+        .querySelector('button.like')
+        .addEventListener(
+            'click', 
+            this.favFlick.bind(this, flick)
+        )
+    item
+        .querySelector('button.remove')
+        .addEventListener(
+            'click', 
+            this.removeFlick.bind(this, flick)
+        )
+    item
+        .querySelector('button.down')
+        .addEventListener(
+            'click', 
+            this.moveFlickDown.bind(this, flick)
+        )
+    item
+        .querySelector('button.up')
+        .addEventListener(
+            'click', 
+            this.moveFlickUp.bind(this, flick)
+        )
+    
     return item
     },
 
@@ -32,38 +101,16 @@ const app = {
       fav: false,
 
     }
-
-    item
-        .querySelector('button.remove')
-        .addEventListener('click', this.removeFlick.bind(this, flick))
-
-        querySelector('button.like')
-        .addEventListener('click', this.removeFlick.bind(this, flick))
-
-        querySelector('button.up')
-        .addEventListener('click', this.removeFlick.bind(this, flick))
-
-        querySelector('button.down')
-        .addEventListener('click', this.removeFlick.bind(this, flick))
-
-
-
-
-
-
-
-
-
-
     
-
-    this.flicks.push(flick)
+    this.flicks.unshift(flick)
 
     // console.log(this.flicks)
     const listItem = this.renderListItem(flick)
-    this.list.appendChild(listItem)
+    this.list
+    .insertBefore(listItem, this.list.firstElementChild)
 
-    this.max ++
+
+    ++ this.max
     f.reset()
   },
 }
